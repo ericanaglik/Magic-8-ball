@@ -38,6 +38,15 @@ class ViewController: UIViewController {
 //
 //        answerLabel.text = "button was tapped"
     }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        guard motion == .motionShake else { return }
+        
+        let maxIndex = UInt32(answers.count)
+        let randomIndex = Int(arc4random_uniform(maxIndex))
+        
+        answerLabel.text = answers[randomIndex]
+    }
 
 
 }
