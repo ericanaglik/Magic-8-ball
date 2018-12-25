@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shakeButtonTapped(_ sender: UIButton){
+        generateAnswer()
         //1
         let maxIndex = UInt32(answers.count)
         //2
@@ -42,12 +43,21 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
         
+        generateAnswer()
+        
         let maxIndex = UInt32(answers.count)
         let randomIndex = Int(arc4random_uniform(maxIndex))
         
         answerLabel.text = answers[randomIndex]
     }
-
+    
+    func generateAnswer() {
+        let maxIndex = UInt32(answers.count)
+        let randomIndex = Int(arc4random_uniform(maxIndex))
+        
+        answerLabel.text = answers[randomIndex]
+    }
+ 
 
 }
 
